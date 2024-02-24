@@ -1,9 +1,14 @@
+import 'package:ecommerce_app/utils/extensions/context_extension.dart';
 import 'package:ecommerce_app/utils/extensions/sized_box_extension.dart';
+import 'package:ecommerce_app/view/screens/home/view_model/home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../base_view_model/base_view_model.dart';
 import '../../../../utils/app_constants/app_colors.dart';
 
+import '../../../widgets/app_error/app_errors.dart';
 import '../../../widgets/app_shimmers/shimmer_loader.dart';
 import '../../../widgets/my_cached_network_image.dart';
 import '../../../widgets/text_view.dart';
@@ -13,16 +18,54 @@ class ProductTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverPadding(
-      padding: const EdgeInsets.all(16),
-      sliver: SliverList(
-        delegate: SliverChildBuilderDelegate(
-          (context, index) {
-            return _productTile(context);
-          },
-          childCount: 3,
-        ),
-      ),
+    return Consumer<HomeViewModel>(
+      builder: (context, data, _) {
+        if (data.state == NotifierState.loading) {
+          return SizedBox(
+            width: context.width,
+            height: context.height,
+            child: const Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: EdgeInsets.all(20.0),
+                child: CircularProgressIndicator(
+                  color: AppColors.white,
+                ),
+              ),
+            ),
+          );
+        }
+        if (data.state == NotifierState.loading) {
+          return SliverPadding(
+            padding: const EdgeInsets.all(16),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return _productTile(context);
+                },
+                childCount: 3,
+              ),
+            ),
+          );
+        }
+        if (data.state == NotifierState.error) {
+          return Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: AppErrors(
+                isCenter: false,
+                error: data.error ?? 'Something went wrong',
+                titleColor: AppColors.white,
+                errorColor: AppColors.white,
+              ),
+            ),
+          );
+        }
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
   }
 

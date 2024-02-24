@@ -1,6 +1,6 @@
+import 'package:ecommerce_app/utils/app_theme/app_text_style.dart';
+import 'package:ecommerce_app/view/widgets/text_view.dart';
 import 'package:flutter/material.dart';
-import 'package:sappay_recharge/utils/app_theme/app_text_style.dart';
-import 'package:sappay_recharge/view/widgets/text_view.dart';
 
 import '../../utils/app_constants/app_colors.dart';
 

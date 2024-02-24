@@ -1,6 +1,6 @@
+import 'package:ecommerce_app/utils/extensions/sized_box_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:sappay_recharge/utils/app_constants/app_images.dart';
-import 'package:sappay_recharge/utils/extensions/sized_box_extension.dart';
+
 
 import '../../utils/app_constants/app_colors.dart';
 import '../../utils/app_theme/app_text_style.dart';
@@ -63,7 +63,7 @@ class ErrorDialog extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Image.asset(AppImages.errorIcon, height: 50, width: 50),
+                  // Image.asset(AppImages.errorIcon, height: 50, width: 50),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 30),
                     child: Column(

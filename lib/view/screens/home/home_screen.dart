@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/utils/extensions/context_extension.dart';
+import 'package:ecommerce_app/utils/extensions/sized_box_extension.dart';
 import 'package:ecommerce_app/view/screens/home/view_model/home_view_model.dart';
 import 'package:ecommerce_app/view/widgets/text_view.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +11,7 @@ import '../../widgets/app_bars/app_bars.dart';
 import '../../widgets/app_error/app_errors.dart';
 import '../../widgets/app_shimmers/shimmer_loader.dart';
 import '../../widgets/my_cached_network_image.dart';
-import 'home_widgets/choose_your_operator.dart';
-import 'home_widgets/packages_slider.dart';
-import 'home_widgets/recent_packages.dart';
+
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home-screen';
@@ -49,43 +48,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _servicesComponents({
-    required String svgIcon,
-    required String text,
-    required int categoryId,
-  }) {
-    return GestureDetector(
-      onTap: () => navigateToScreen(context, categoryId),
-      child: Column(
-        children: [
-          MyCachedNetworkImage(
-            height: 45,
-            width: 45,
-            imageUrl: svgIcon,
-            imageBuilder: (context, imageProvider) => Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(image: imageProvider),
-              ),
-            ),
-            placeholder: const ShimmerLoader(
-              height: 45,
-              width: 45,
-              radius: 10,
-            ),
-            errorWidget: const Icon(Icons.error),
-          ),
-          10.0.verticalSpace,
-          Align(
-            alignment: Alignment.topCenter,
-            child: TextView(
-              text: text,
-              style: AppTextStyle.semiBold13.copyWith(color: AppColors.white),
-              maxLine: 2,
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sappay_recharge/utils/app_theme/app_text_style.dart';
+
+import '../../utils/app_theme/app_text_style.dart';
 
 class TextAlertDialog extends StatelessWidget {
   final String message;
